@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Dashboard Covid 19 Indonesia</title>
+    <meta name="description" content="Dashboard Covid 19 Indonesia. Data kasus per provinsi dan informasi lainnya terkait penanganan Covid 19">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pertemuan3-dashboard-covid-19.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <!-- Header dashboard -->
+    <div class="topnav" id="myTopnav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Kasus</a>
+      <a href="#">Bantuan Sosial</a>
+      <a href="#">Bantuan Sosial</a>
+      <a href="#">Donasi</a>
+      <a href="#">Kontak</a>
+      <a href="#" id="button-download-app">Download App</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    
+    <!-- Konten utama dashboard -->
+    <div>
+        <div class="card">
+            <header>
+                <h1>Dashboard Statistik Kasus COVID-19 Indonesia</h1>
+                <small>Update Terakhir: Senin, 5 Okt 2020</small>
+            </header>
+                <div class="grid-container">
+                    <div class="grid-item item1" style=" animation-name: example;
+                    animation-duration: 10s;">
+                        <h2>Positif</h2>
+                        <h4>307.120</h4>
+                    </div>
+                    <div class="grid-item item3" style="background-color: #2ecc71; animation-name: example2;
+                    animation-duration: 10s;">
+                        <h4>Sembuh</h4>
+                        <h4>232.593</h4>
+                    </div>
+                    <div class="grid-item item3" style="background-color: #e74c3c; animation-name: example3;
+                    animation-duration: 10s;">
+                        <h4>Meninggal</h4>
+                        <h4>11.253</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h1 class="title-berita">BERITA TERBARU</h1>
+                <div class="card">
+                    <h2>KASUS COVID-19 DI INDONESIA SEMAKIN SURAM</h2>
+                    <h5>Senin, 5 Okt 2020</h5>
+                    <div class="fakeimg" style="height:400px;">Image</div>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    <button class="button">Selanjutnya >></button>
+                  </div>
+                  <div class="card">
+                    <h2>SURAM NA TEH EDANN</h2>
+                    <h5>Senin, 5 Okt 2020</h5>
+                    <div class="fakeimg" style="height:400px;">Image</div>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                    <button class="button">Selanjutnya >></button>
+                </div>
+            </div>
+    </div>
+
+    <!-- Bagian footer dari dashboard -->
+    <footer class="footer">
+        <p>Tim Pengelola Dashboard COVID-19 Indonesia</p>
+      </footer> 
+
+      <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>    
+
+  </body>
+</html> 
