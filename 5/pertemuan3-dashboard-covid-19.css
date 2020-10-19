@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+  }
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+}
+
+.header {
+    background-color: #9933cc;
+    color: #ffffff;
+    padding: 15px;
+}
+
+.nav-atas {
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 0px rgba(0,0,0,0.24); 
+}
+ 
+.logo {
+    float: left;
+    display: block;
+    color: red;
+    text-align: center;
+    font-size: 17px;
+    font-family: 'Krona One', sans-serif;
+    border: 1px solid black;
+}
+
+.nav-atas a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+.nav-atas .icon {
+    display: none;
+}
+
+.buttonnav {
+    background-color:green;
+    border: none;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    animation-name: logo;
+    animation-duration: 10s;
+}
+
+.button {
+    background-color:green;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+  
+@media screen and (max-width: 1100px) {
+    .nav-atas a:not(:first-child) {display: none;}
+    .nav-atas a.icon {
+      float: right;
+      display: block;
+    }
+}
+  
+@media screen and (max-width: 1100px) {
+    .nav-atas.responsive {position: relative;}
+    .nav-atas.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+}
+    .nav-atas.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+
+.uday {
+    font-size: 15px;
+    color: gray;
+}
+
+.konten {
+    padding: 20px;
+}
+
+.konten div {
+    padding: 8px;
+    margin-bottom: 7px;
+     
+}
+
+.konten-rangkuman-kasus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width: 300px){
+    .konten-rangkuman-kasus {
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen adn (max-width: 300px){
+    .round-box{
+        width: 500px;
+    }
+}
+
+.round-box {
+    width:290px;
+	height:105px;
+	margin:10px;
+    padding:10px;
+    background-color: white ;
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.konfirm {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(49,106,117,1) 100%, rgba(116,116,173,1) 100%);
+}
+
+.isol {
+    background-color: white ;
+    color: black;
+}
+
+.isol > h1 {
+    color: orange;
+}
+
+.sembuh {
+    background-color: white ;
+    color: black;
+}
+
+.sembuh:hover {
+    background-color: #9adf91;
+}
+
+.sembuh > h1 {
+    color: green;
+}
+
+.die {
+    background-color: white ;
+    color: black;
+}
+
+.die:hover {
+    background-color: #d6948c;
+}
+
+.die > h1 {
+    color: red;
+}
+
+.ayhd {
+    width:auto;
+    height:auto;
+    background-color: green ;
+    color: white;
+    border-radius: 5px;
+}
+
+.footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+
+.footer hr {
+    border: 1px solid gray;
+}
+
+@keyframes logo {
+    0%   {background-color:green;}
+    50%  {background-color:white;}
+    100%  {background-color:green;}
+  }
