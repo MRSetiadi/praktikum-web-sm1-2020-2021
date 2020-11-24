@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript Function</h1>
+    <script>
+
+        //Deklarasi Function
+        function getLuas(panjang, lebar){
+            var luas = panjang * lebar;
+            return luas;
+        }
+        console.log(getLuas(4, 5));
+
+        //Deklarasi Function Sebagai Expression
+        var getLuas = function (panjang, lebar) {return panjang * lebar};
+        console.log(getLuas(8, 10));
+
+        //Hoisting Pada Function
+        console.log(getLuas(5, 10));
+        var getLuas = function (panjang, lebar) {return panjang * lebar};
+
+        //Memasukan Nilai Balikan Function ke Dalam Variable
+        var getLuas = function (panjang, lebar) {return panjang * lebar};
+
+        var luas = getLuas(7, 8);
+        console.log(luas);
+
+        //Function Sebagai Parameter Function Lainnya
+        var getLuas = function (panjang, lebar) {return panjang * lebar};
+
+        function printGetLuas(f) {
+            luas = f(4, 5);
+            console.log(luas);
+        }
+        printGetLuas(getLuas);
+
+        //Arrow Function
+        const getLuass = (panjang, lebar) => panjang * lebar;
+        console.log(getLuass(9,12));
+
+        //Argumen Fungsi
+        printPeserta("Jamal", "Malih", "Burhan", "Bambang");
+        function printPeserta(){
+            console.log(arguments);
+        }
+
+        //Function Nama
+        function getName(depan, belakang){
+            var name = depan + " " + belakang;
+            return name;
+        }
+        console.log(getName("Rizky", "Setiadi"));
+
+        //Function Cerita Kemarin
+        function ceritaKemarin(hari, nama, aksi, tempat){
+            return "Hari " + hari + " seorang pemuda bernama " + nama + " yang tampan sedang " + aksi + " di " + tempat   
+        }
+        console.log(ceritaKemarin("Sabtu","Rizky","Tidur","Kamar Tidur",));
+
+        console.log("MANTAP PAK");
+    </script>
+</body>
+</html>
