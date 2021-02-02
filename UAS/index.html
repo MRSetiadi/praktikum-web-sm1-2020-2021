@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Grafik Rasio</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#grafik">Grafik</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Dashboard Statistik Data Penduduk dan Tenaga Medis</h1>
+    </div>
+  </header>
+  
+  <div class="jumbotron" id="home">
+    <p class="lead">Sejumlah wilayah di Indonesia masih banyak yang kekurangan tenaga dokter. Berdasarkan data Kementerian Kesehatan (Kemenkes) 2012, terungkap bahwa dari 9.510 puskesmas yang ada di Indonesia, 14,7% di antaranya tidak memiliki tenaga dokter. Selain itu masih terdapat 16,76% puskesmas di negara kita yang tidak memiliki jumlah tenaga kesehatan (nakes) minimal, yang terdiri dari 1 dokter, 1 perawat dan 1 bidan.</p>
+    <hr class="my-4">
+    <p class="lead">Rendahnya jumlah dan belum meratanya dokter di Indonesia juga diungkapkan Menteri Koordinator Bidang Kesejahteraan Rakyat Agung Laksono. Mengutip data Badan Kesehatan Dunia (WHO), Agung menyatakan bahwa Indonesia termasuk dalam negera yang tingkat kekurangan tenaga kesehatannya sudah serius.
+      Pasalnya Indonesia merupakan salah satu negara yang rasio tenaga kesehatannya kurang dari 23 per 10 ribu penduduk. Selain negara kita, negara lain dengan kondisi serupa adalah Bangladesh, Bhutan dan India.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+  </div>
+  <hr>
+  <center><h4 class="display-4" id="grafik">Grafik Rasion Penduduk & Dokter</h4></center>
+  <div class="container">
+        <canvas id="canvas-untuk-menggambar-grafik"></canvas>       
+        <script>
+            function buatDataUntukGrafik(dataPenduduk, dataDokter) {       
+              var label = dataPenduduk.nilai_per_wilayah.map(function(satuanData) {
+                return satuanData.wilayah; 
+              }); 
+
+              var jumlahDokter = dataDokter.nilai_per_wilayah.map(function(satuanData) {
+                return satuanData.nilai_per_tahun[0].nilai;
+              });
+
+              var jumlahPenduduk = dataPenduduk.nilai_per_wilayah.map(function(satuanData) {
+                return satuanData.nilai_per_tahun[0].nilai;
+              });
+
+              var jumlahPendudukPerDokter = dataPenduduk.nilai_per_wilayah.map(function(satuanData, urutan) {
+                return Math.round(jumlahPenduduk[urutan] / jumlahDokter[urutan]);
+              });
+
+              var garisIdealWHOPendudukPerDokter = dataPenduduk.nilai_per_wilayah.map(function(satuanData) {
+                return 1000;
+              });
+
+              var garisIdealBPJSPendudukPerDokter = dataPenduduk.nilai_per_wilayah.map(function(satuanData) {
+                return 5000;
+              });
+
+              var dataUntukGrafik = {
+                labels: label,
+                datasets: [{
+                  label: "Rasio Ideal Penduduk per 1 Dokter - WHO",
+                  borderColor: "rgb(0, 0, 0)",
+                  borderWidth: 1,
+                  yAxisID: "sumbu-y-kanan",
+                  data: garisIdealWHOPendudukPerDokter,
+                  type: 'line'
+                }, {
+                  label: "Rasio Ideal Penduduk per 1 Dokter - BPJS",
+                  borderColor: "rgb(0, 0, 0)",
+                  borderWidth: 3,
+                  yAxisID: "sumbu-y-kanan",
+                  data: garisIdealBPJSPendudukPerDokter,
+                  type: 'line'
+                }, {
+                  label: "Jumlah Penduduk",
+                  backgroundColor: "rgb(0, 26, 255)",
+                  yAxisID: "sumbu-y-kiri",
+                  data: jumlahPenduduk
+                }, {
+                  label: "Rasio Penduduk per 1 Dokter",
+                  backgroundColor: "rgb(255, 64, 64)",
+                  yAxisID: "sumbu-y-kanan",
+                  data: jumlahPendudukPerDokter
+                }]
+              };
+
+              return dataUntukGrafik;
+            }
+
+            function buatGrafik(dataPenduduk, dataDokter) {
+              var elemenCanvas = document.getElementById("canvas-untuk-menggambar-grafik");
+              var penggambarCanvas = elemenCanvas.getContext("2d");
+
+              var judulGrafik = "Grafik Rasio Jumlah Penduduk Per 1 Dokter";
+              var dataUntukGrafik = buatDataUntukGrafik(dataPenduduk, dataDokter);
+
+              var konfigurasiChartJS = {
+                type: 'bar',
+                data: dataUntukGrafik,
+                options: {
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: judulGrafik
+                  },
+                  scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        ticks: {
+                            min: 0
+                        },
+                        id: 'sumbu-y-kiri'
+                      }, {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        ticks: {
+                          min: 0
+                        },
+                        id: 'sumbu-y-kanan'
+                      }]
+                  }
+                }
+              }
+
+              var grafik = new Chart(penggambarCanvas, konfigurasiChartJS);
+            }
+
+            window.onload = function() {       
+              var urlDataPenduduk = "https://mechaid.github.io/course-materials/praktikum-web/2020-2021/contoh/json-api-ke-chart/penduduk-jawa-barat-2019.json"; 
+              var urlDataDokter = "https://mechaid.github.io/course-materials/praktikum-web/2020-2021/contoh/json-api-ke-chart/dokter-jawa-barat-2019.json";
+
+              var dataPenduduk, dataDokter;
+
+              var requestDataPenduduk = new XMLHttpRequest();
+              requestDataPenduduk.open("GET", urlDataPenduduk, true);
+              requestDataPenduduk.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                  dataPenduduk = JSON.parse(this.responseText);
+                  if(dataDokter !== undefined) {
+                    buatGrafik(dataPenduduk, dataDokter);
+                  }
+                } 
+              };
+              requestDataPenduduk.send();
+
+              var requestDataDokter = new XMLHttpRequest();
+              requestDataDokter.open("GET", urlDataDokter, true);
+              requestDataDokter.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                  dataDokter = JSON.parse(this.responseText);
+                  if(dataPenduduk !== undefined) {
+                    buatGrafik(dataPenduduk, dataDokter);
+                  }
+                } 
+              };
+              requestDataDokter.send();         
+            };
+        </script>
+  </div>
+
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; 2021</p>
+    </div>
+  </footer>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/scrolling-nav.js"></script>
+</body>
+</html>
